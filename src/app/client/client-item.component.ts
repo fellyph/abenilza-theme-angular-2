@@ -12,5 +12,6 @@ export class ClientItemComponent {
 
   onLike() {
     console.log('liked');
+    this.like.emit(this.clientItem);
   }
 }

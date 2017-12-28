@@ -1,0 +1,8 @@
+<section class="clients">
+  <app-client-
+    *ngFor="let clientItem of clientItems"
+    [mediaItem]="mediaItem"
+    [ngClass]="test"
+    (like)="onClientItemLiked($event)"
+  ></app-client-item>
+</section>

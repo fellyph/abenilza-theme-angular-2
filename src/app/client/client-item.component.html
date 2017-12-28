@@ -1,4 +1,4 @@
-<article class="client" data-id="{{clientItem.id}}">
+<article class="client" appLike data-id="{{clientItem.id}}">
   <figure>
     <figcaption>{{clientItem.name}}</figcaption>
   </figure>
@@ -7,4 +7,5 @@
   <div class="client__description">
       {{clientItem.description}}
   </div>
+  <button (click)="onLike()">Like</button>
 </article>

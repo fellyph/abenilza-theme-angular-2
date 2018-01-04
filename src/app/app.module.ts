@@ -16,18 +16,19 @@ import { MatButtonModule, MatGridListModule, MatIconModule, MatInputModule, MatS
   MatToolbarModule, MatCardModule, MatSlideToggleModule } from '@angular/material';
 
 import 'hammerjs';
+import { ClientDetailsComponent } from './client/client-details/client-details.component';
 
 const routes = [
   { path: '', component: ClientListComponent },
-  { path: 'client', component: ClientComponent },
-  { path: 'client/:id', component: ClientComponent}
+  { path: 'client/:id', component: ClientDetailsComponent}
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
     ClientComponent,
-    ClientListComponent
+    ClientListComponent,
+    ClientDetailsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

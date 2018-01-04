@@ -1,8 +1,11 @@
+<mat-toolbar>
+  <h2>Clientes</h2>
+</mat-toolbar>
 <section class="clients">
-  <app-client-item
+  <app-client
     *ngFor="let clientItem of clientItems"
     [clientItem]="clientItem"
     [ngClass]="test"
     (like)="onClientItemLiked($event)"
-  ></app-client-item>
+  ></app-client>
 </section>

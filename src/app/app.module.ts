@@ -3,32 +3,42 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { ClientItemComponent } from './client/client-item.component';
+import { ClientComponent } from './client/client.component';
 import { LikeDirective } from './directive/like.directive';
 import { GeolocationService } from './geolocation.service';
-import { ClientItemListComponent } from './client/client-item-list.components';
-import { ClientItemService } from './client/client-item.service';
+import { ClientListComponent } from './client/client-list.components';
+import { ClientService } from './client/client.service';
 import { DataService } from './data.service';
+import {Routes, RouterModule} from '@angular/router';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatIconModule, MatInputModule, MatSelectModule, MatSliderModule,
+import { MatButtonModule, MatGridListModule, MatIconModule, MatInputModule, MatSelectModule, MatSliderModule,
   MatToolbarModule, MatCardModule, MatSlideToggleModule } from '@angular/material';
+
 import 'hammerjs';
+
+const routes = [
+  { path: '', component: ClientListComponent },
+  { path: 'client', component: ClientComponent },
+  { path: 'client/:id', component: ClientComponent}
+];
 
 @NgModule({
   declarations: [
     AppComponent,
-    ClientItemComponent,
-    ClientItemListComponent
+    ClientComponent,
+    ClientListComponent
   ],
   imports: [
+    RouterModule.forRoot(routes),
     BrowserModule,
     HttpModule,
-    BrowserAnimationsModule, MatButtonModule, MatIconModule, MatInputModule, MatSelectModule, MatSliderModule,
+    BrowserAnimationsModule, MatGridListModule, MatButtonModule,
+    MatIconModule, MatInputModule, MatSelectModule, MatSliderModule,
     MatToolbarModule, MatCardModule, MatSlideToggleModule
   ],
   providers: [
-   ClientItemService,
+   ClientService,
    GeolocationService,
    DataService
   ],

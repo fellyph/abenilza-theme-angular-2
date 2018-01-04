@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls:  ['./client.component.css']
 })
 
-export class ClientComponent {
+export class ClientComponent implements OnInit {
   @Input() clientItem;
   @Output() like = new EventEmitter();
 
@@ -15,8 +15,18 @@ export class ClientComponent {
 
   constructor(private route: ActivatedRoute) {}
 
+  ngOnInit() {
+    this.routingSubscription = this.route.params.subscribe(params => {
+      console.log(params['id']);
+    });
+  }
+
   onLike() {
     console.log('liked');
     this.like.emit(this.clientItem);
+  }
+
+  ngOnDestroy () {
+    this.routingSubscription.unsubiscribe();
   }
 }

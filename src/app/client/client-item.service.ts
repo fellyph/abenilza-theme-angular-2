@@ -1,48 +1,36 @@
-export class ClientItemService {
-  clientItems = [{
-      id: 1,
-      name: 'Cliente 1',
-      gender: 'feminino',
-      category: 'curto',
-      year: 2017,
-      likes: 10
-    },
-    {
-      id: 2,
-      name: 'Cliente 2',
-      gender: 'feminino',
-      category: 'curto',
-      year: 2017,
-      likes: 10
-    },
-    {
-      id: 3,
-      name: 'Cliente 3',
-      gender: 'feminino',
-      category: 'curto',
-      year: 2017,
-      likes: 10
-    },
-    {
-      id: 4,
-      name: 'Cliente 4',
-      gender: 'feminino',
-      category: 'curto',
-      year: 2017,
-      likes: 10
-    }
-  ];
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
 
-  get () {
-    return this.clientItems;
+@Injectable()
+export class ClientItemService {
+  constructor (private http: Http) {}
+
+  get() {
+    return this.http.get('http://localhost:8888/abenilza/wp-json/wp/v2/trabalhos')
+      .map(response => {
+        console.log(response.json());
+        return response.json();
+      });
   }
 
-  add (clientItem) {
-    this.clientItems.push(clientItem)
+  add(clientItem) {
+    console.log(clientItem);
   }
 
   like (clientItem) {
-
   }
-  
 }
+
+/*
+getBooks() 
+{
+  this.isbnsource.getBooks(this.isbn).subscribe(
+    data => { this.foundBooks = data.json();
+this.foundBooks = Array.of(this.foundBooks); 
+     },
+    err => console.error(err), 
+    () => console.log('getBooks completed') 
+    );
+}
+*/

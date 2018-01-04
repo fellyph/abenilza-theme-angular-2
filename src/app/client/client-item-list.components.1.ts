@@ -10,19 +10,14 @@ import { ClientItemService } from './client-item.service';
 })
 
 export class ClientItemListComponent {
-  clientItems = [];
+  clientItems;
+  medium = '';
+  paramsSubscription;
 
   constructor (private clientItemService: ClientItemService) {}
 
   ngOnInit() {
-    this.clientItemService.get()
-          .subscribe(
-              data => {
-                this.clientItems = data;
-              },
-              err => console.error(err),
-              () => console.log('getClients completed')
-          );
+   console.log(this.clientItemService.get());
   }
 
   onClientItemLike(clientItem) {

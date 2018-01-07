@@ -1,7 +1,7 @@
 class Client {
   private like = 0;
 
-  constructor(public id: Number,
+  constructor(public id: Number = 0,
               public name: string = '',
               public gender: string = '',
               public category: string = '') {}

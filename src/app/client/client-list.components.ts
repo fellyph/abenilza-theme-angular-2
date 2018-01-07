@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { ClientService } from './client.service';
 import Client from './Client';
@@ -13,10 +13,11 @@ import Client from './Client';
 export class ClientListComponent implements OnInit {
   clientItems = [];
 
-  constructor (private clientItemService: ClientService) {}
+  constructor (private clientItemService: ClientService,
+                private router: Router) {}
 
   ngOnInit() {
-    this.clientItemService.get()
+    this.clientItemService.getList()
           .subscribe(
               data => {
                 this.clientItems = data;
@@ -26,7 +27,11 @@ export class ClientListComponent implements OnInit {
           );
   }
 
-  onClientItemLike(clientItem) {
+  onClientLike(clientItem) {
     this.clientItemService.like(clientItem);
+  }
+
+  onClientDetails(clientItem) {
+    this.router.navigate(['/trabalhos', clientItem.id]);
   }
 }

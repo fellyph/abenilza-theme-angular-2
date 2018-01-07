@@ -7,6 +7,7 @@ import { ClientComponent } from './client/client.component';
 import { LikeDirective } from './directive/like.directive';
 import { GeolocationService } from './geolocation.service';
 import { ClientListComponent } from './client/client-list.components';
+import { ClientDetailsComponent } from './client/client-details/client-details.component';
 import { ClientService } from './client/client.service';
 import { DataService } from './data.service';
 import {Routes, RouterModule} from '@angular/router';
@@ -16,7 +17,6 @@ import { MatButtonModule, MatGridListModule, MatIconModule, MatInputModule, MatS
   MatToolbarModule, MatCardModule, MatSlideToggleModule } from '@angular/material';
 
 import 'hammerjs';
-import { ClientDetailsComponent } from './client/client-details/client-details.component';
 
 const routes = [
   { path: '', component: ClientListComponent },

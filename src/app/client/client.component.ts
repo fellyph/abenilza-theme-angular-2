@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import Client from './Client';
 
 @Component({
   selector: 'app-client',
@@ -7,18 +8,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls:  ['./client.component.css']
 })
 
-export class ClientComponent implements OnInit {
+export class ClientComponent {
   @Input() clientItem;
   @Output() like = new EventEmitter();
+  @Output() details = new EventEmitter();
+  @Output() share = new EventEmitter();
 
   routingSubscription: any;
 
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {
-    this.routingSubscription = this.route.params.subscribe(params => {
-      console.log(params['id']);
-    });
+  onDetails() {
+    this.details.emit(this.clientItem);
   }
 
   onLike() {
@@ -26,7 +27,16 @@ export class ClientComponent implements OnInit {
     this.like.emit(this.clientItem);
   }
 
-  ngOnDestroy () {
-    this.routingSubscription.unsubiscribe();
+  onShare() {
+    if ('share' in navigator) {
+      navigator['share']({
+        title: this.clientItem.name,
+        text: `I loved this look ${this.clientItem.name}`,
+        url: window.location.href
+      });
+    } else {
+      const shareURL = `whatsapp://send?text={this.clientItem.name}`;
+      location.href = shareURL;
+    }
   }
 }

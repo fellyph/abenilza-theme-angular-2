@@ -2,10 +2,9 @@
     <mat-card-header>
         <mat-card-title>{{clientItem.title.rendered}}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image [src]="clientItem.thumbnail_url_medium" />
+    <img mat-card-image routerLink="/client" [src]="clientItem.thumbnail_url_medium" />
+
     <mat-card-actions>
         <button mat-button (click)="onLike()"><mat-icon>favorite</mat-icon>Like</button>
     </mat-card-actions>
 </mat-card>
-
-<a mat-fab routerLink="/client">details</a>
